@@ -1,6 +1,6 @@
 Name: 		awesfx
 Version:	0.5.0d
-Release:	%mkrel 4
+Release:	%mkrel 5
 Summary:	Utility programs for the AWE32 sound driver
 Group:		System/Kernel and hardware
 URL:		http://www.alsa-project.org/~iwai/awedrv.html#Utils
@@ -8,7 +8,7 @@ Source0:	http://www.alsa-project.org/~iwai/%{name}-%{version}.tar.bz2
 Source2:	http://www.pvv.org/~thammer/localfiles/soundfonts_other/gu11-rom.zip
 Source3:	awe_voice.h
 License:	GPL
-ExclusiveArch:	%{ix86} alpha
+#ExclusiveArch:	%{ix86} alpha
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	unzip
 BuildRequires:	alsa-lib-devel >= 1.0.2-2mdk
