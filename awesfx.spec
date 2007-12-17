@@ -9,7 +9,6 @@ Source2:	http://www.pvv.org/~thammer/localfiles/soundfonts_other/gu11-rom.zip
 Source3:	awe_voice.h
 License:	GPL
 #ExclusiveArch:	%{ix86} alpha
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	unzip
 BuildRequires:	alsa-lib-devel >= 1.0.2-2mdk
 
