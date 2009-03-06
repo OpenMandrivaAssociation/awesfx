@@ -1,6 +1,6 @@
 Name: 		awesfx
 Version:	0.5.0d
-Release:	%mkrel 7
+Release:	%mkrel 8
 Summary:	Utility programs for the AWE32 sound driver
 Group:		System/Kernel and hardware
 URL:		http://www.alsa-project.org/~iwai/awedrv.html#Utils
