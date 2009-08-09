@@ -37,6 +37,8 @@ cd ..
 
 install -m644 %{SOURCE3} -D include/linux/awe_voice.h
 
+perl -pi -e "s|getline|awesfx_getline|g" *.c
+
 %build
 export PATH=$PATH:/usr/X11R6/bin
 %configure2_5x
