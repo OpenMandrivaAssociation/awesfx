@@ -1,12 +1,12 @@
 Name: 		awesfx
-Version:	0.5.0d
-Release:	%mkrel 9
+Version:	0.5.1c
+Release:	%mkrel 1
 Summary:	Utility programs for the AWE32 sound driver
 Group:		System/Kernel and hardware
 URL:		http://www.alsa-project.org/~iwai/awedrv.html#Utils
 Source0:	http://www.alsa-project.org/~iwai/%{name}-%{version}.tar.bz2
 Source2:	http://www.pvv.org/~thammer/localfiles/soundfonts_other/gu11-rom.zip
-Source3:	awe_voice.h
+Patch0:		awesfx-0.5.1c-getline.patch
 License:	GPL
 #ExclusiveArch:	%{ix86} alpha
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -30,19 +30,19 @@ Development files needed for awesfx.
 
 %prep
 %setup -q
+%patch0 -p0
 mkdir gu11-rom
 cd gu11-rom
 unzip %{SOURCE2}
 cd ..
 
-install -m644 %{SOURCE3} -D include/linux/awe_voice.h
+#install -m644 %{SOURCE3} -D include/linux/awe_voice.h
 
-perl -pi -e "s|getline|awesfx_getline|g" *.c
+#perl -pi -e "s|getline|awesfx_getline|g" *.c
 
 %build
-export PATH=$PATH:/usr/X11R6/bin
 %configure2_5x
-make CDEBUGFLAGS="$RPM_OPT_FLAGS"
+%make
 
 %install
 rm -rf $RPM_BUILD_ROOT
