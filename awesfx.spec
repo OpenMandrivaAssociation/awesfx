@@ -45,23 +45,23 @@ cd ..
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/{%_mandir,%_bindir,%_libdir}
-mkdir -p $RPM_BUILD_ROOT/%{_sysconfdir}/midi
-mkdir -p $RPM_BUILD_ROOT/bin
+rm -rf %{buildroot}
+mkdir -p %{buildroot}/{%_mandir,%_bindir,%_libdir}
+mkdir -p %{buildroot}/%{_sysconfdir}/midi
+mkdir -p %{buildroot}/bin
 %{makeinstall_std}
-mkdir -p $RPM_BUILD_ROOT%{_includedir}/awe
+mkdir -p %{buildroot}%{_includedir}/awe
 for i in include/*.h ; do
-install -m 644 $i $RPM_BUILD_ROOT%{_includedir}/awe
+install -m 644 $i %{buildroot}%{_includedir}/awe
 done
-mv $RPM_BUILD_ROOT%{_bindir}/sfxload $RPM_BUILD_ROOT/bin/
-cp gu11-rom/GU11-ROM.SF2 $RPM_BUILD_ROOT%{_sysconfdir}/midi
-#rm -rf $RPM_BUILD_ROOT{%_libdir/sfbank,%_datadir/sounds/sf2}
-rm -rf $RPM_BUILD_ROOT%_libdir/sfbank
-install -m 644 awelib/libawe.a $RPM_BUILD_ROOT%_libdir
+mv %{buildroot}%{_bindir}/sfxload %{buildroot}/bin/
+cp gu11-rom/GU11-ROM.SF2 %{buildroot}%{_sysconfdir}/midi
+#rm -rf %{buildroot}{%_libdir/sfbank,%_datadir/sounds/sf2}
+rm -rf %{buildroot}%_libdir/sfbank
+install -m 644 awelib/libawe.a %{buildroot}%_libdir
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
