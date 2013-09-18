@@ -1,13 +1,12 @@
 Summary:	Utility programs for the AWE32 sound driver
 Name: 		awesfx
-Version:	0.5.1c
+Version:	0.5.1d
 Release:	5
 Group:		System/Kernel and hardware
 License:	GPLv2
 Url:		http://www.alsa-project.org/~iwai/awedrv.html#Utils
-Source0:	http://www.alsa-project.org/~iwai/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.suse.com/pub/people/tiwai/awesfx/%{name}-%{version}.tar.gz
 Source2:	http://www.pvv.org/~thammer/localfiles/soundfonts_other/gu11-rom.zip
-Patch0:		awesfx-0.5.1c-getline.patch
 #ExclusiveArch:	%{ix86} alpha
 BuildRequires:	unzip
 BuildRequires:	pkgconfig(alsa)
@@ -29,7 +28,6 @@ Development files needed for awesfx.
 
 %prep
 %setup -q
-%patch0 -p0
 mkdir gu11-rom
 cd gu11-rom
 unzip %{SOURCE2}
