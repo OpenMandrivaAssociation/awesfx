@@ -1,7 +1,7 @@
 Summary:	Utility programs for the AWE32 sound driver
 Name: 		awesfx
 Version:	0.5.1d
-Release:	16
+Release:	17
 Group:		System/Kernel and hardware
 License:	GPLv2
 Url:		http://www.alsa-project.org/~iwai/awedrv.html#Utils
@@ -27,7 +27,7 @@ Summary:	Development files for awesfx
 Development files needed for awesfx.
 
 %prep
-%setup -q
+%autosetup -p1
 mkdir gu11-rom
 cd gu11-rom
 unzip %{SOURCE2}
@@ -38,14 +38,14 @@ cd ..
 #perl -pi -e "s|getline|awesfx_getline|g" *.c
 
 %build
-%configure2_5x
-%make
+%configure
+%make_build
 
 %install
 mkdir -p %{buildroot}/{%_mandir,%_bindir,%{_libdir}}
 mkdir -p %{buildroot}/%{_sysconfdir}/midi
 mkdir -p %{buildroot}/bin
-%makeinstall_std
+%make_install
 mkdir -p %{buildroot}%{_includedir}/awe
 for i in include/*.h ; do
 install -m 644 $i %{buildroot}%{_includedir}/awe
@@ -61,7 +61,7 @@ install -m 644 awelib/libawe.a %{buildroot}%{_libdir}
 %config(noreplace) %{_sysconfdir}/midi/GU11-ROM.SF2
 /bin/*
 %{_bindir}/*
-%{_mandir}/man1/*.1*
+%doc %{_mandir}/man1/*.1*
 %_datadir/sounds/sf2
 
 %files devel
