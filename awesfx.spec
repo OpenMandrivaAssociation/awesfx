@@ -38,6 +38,7 @@ cd ..
 #perl -pi -e "s|getline|awesfx_getline|g" *.c
 
 %build
+autoreconf -i
 %configure
 %make_build
 
