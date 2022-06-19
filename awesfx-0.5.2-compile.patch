@@ -1,0 +1,10 @@
+diff -up awesfx-0.5.2/alsa.c.omv~ awesfx-0.5.2/alsa.c
+--- awesfx-0.5.2/alsa.c.omv~	2022-06-19 03:01:41.419945736 +0200
++++ awesfx-0.5.2/alsa.c	2022-06-19 03:01:47.573983051 +0200
+@@ -146,5 +146,5 @@ void seq_set_gus_bank(int bank)
+ 	mode.mode = AWE_MD_GUS_BANK;
+ 	mode.value = bank;
+ 	mode.value2 = 0;
+-	return snd_hwdep_ioctl(hwdep, SNDRV_EMUX_IOCTL_MISC_MODE, &mode);
++	snd_hwdep_ioctl(hwdep, SNDRV_EMUX_IOCTL_MISC_MODE, &mode);
+ }

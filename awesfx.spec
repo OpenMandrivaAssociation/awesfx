@@ -1,12 +1,13 @@
 Summary:	Utility programs for the AWE32 sound driver
 Name: 		awesfx
-Version:	0.5.1d
-Release:	17
+Version:	0.5.2
+Release:	1
 Group:		System/Kernel and hardware
 License:	GPLv2
-Url:		http://www.alsa-project.org/~iwai/awedrv.html#Utils
-Source0:	ftp://ftp.suse.com/pub/people/tiwai/awesfx/%{name}-%{version}.tar.gz
+Url:		https://github.com/tiwai/awesfx
+Source0:	https://github.com/tiwai/awesfx/archive/refs/tags/v%{version}.tar.gz
 Source2:	http://www.pvv.org/~thammer/localfiles/soundfonts_other/gu11-rom.zip
+Patch0:		awesfx-0.5.2-compile.patch
 #ExclusiveArch:	%{ix86} alpha
 BuildRequires:	unzip
 BuildRequires:	pkgconfig(alsa)
@@ -32,6 +33,11 @@ mkdir gu11-rom
 cd gu11-rom
 unzip %{SOURCE2}
 cd ..
+libtoolize --force
+aclocal
+autoheader
+automake -a
+autoconf
 
 #install -m644 %{SOURCE3} -D include/linux/awe_voice.h
 
@@ -44,13 +50,11 @@ cd ..
 %install
 mkdir -p %{buildroot}/{%_mandir,%_bindir,%{_libdir}}
 mkdir -p %{buildroot}/%{_sysconfdir}/midi
-mkdir -p %{buildroot}/bin
 %make_install
 mkdir -p %{buildroot}%{_includedir}/awe
 for i in include/*.h ; do
 install -m 644 $i %{buildroot}%{_includedir}/awe
 done
-mv %{buildroot}%{_bindir}/sfxload %{buildroot}/bin/
 cp gu11-rom/GU11-ROM.SF2 %{buildroot}%{_sysconfdir}/midi
 #rm -rf %{buildroot}{%{_libdir}/sfbank,%_datadir/sounds/sf2}
 rm -rf %{buildroot}%{_libdir}/sfbank
@@ -59,7 +63,6 @@ install -m 644 awelib/libawe.a %{buildroot}%{_libdir}
 %files
 %doc gu11-rom
 %config(noreplace) %{_sysconfdir}/midi/GU11-ROM.SF2
-/bin/*
 %{_bindir}/*
 %doc %{_mandir}/man1/*.1*
 %_datadir/sounds/sf2
