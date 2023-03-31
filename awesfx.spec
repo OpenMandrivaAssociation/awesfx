@@ -1,7 +1,7 @@
 Summary:	Utility programs for the AWE32 sound driver
 Name: 		awesfx
 Version:	0.5.2
-Release:	1
+Release:	2
 Group:		System/Kernel and hardware
 License:	GPLv2
 Url:		https://github.com/tiwai/awesfx
