@@ -9,6 +9,11 @@ Source0:	https://github.com/tiwai/awesfx/archive/refs/tags/v%{version}.tar.gz
 Source2:	http://www.pvv.org/~thammer/localfiles/soundfonts_other/gu11-rom.zip
 Patch0:		awesfx-0.5.2-compile.patch
 #ExclusiveArch:	%{ix86} alpha
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	unzip
 BuildRequires:	pkgconfig(alsa)
 
